@@ -44,7 +44,15 @@ namespace Books.Api.Controllers
                 return NotFound();
             }
 
-            return Ok((bookEntity));
+            var bookCovers = await _booksRepository.GetBookCoversAsync(id);
+
+            //var propertyBag = new Tuple<Entities.Book, IEnumerable<ExternalModels.BookCover>>(
+            //    bookEntity, bookCovers);
+
+            //(Entities.Book book, IEnumerable<ExternalModels.BookCover> bookCovers) propertyBag = 
+            //    (bookEntity, bookCovers);
+
+            return Ok((bookEntity, bookCovers));
         }
 
         [HttpPost]
